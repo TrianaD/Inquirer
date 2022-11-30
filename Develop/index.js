@@ -1,37 +1,37 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-// TODO: Create an array of questions for user input
+
 // README templae format with names
 const generateReadMe = ({github, email, title, description, license, install, tests, usage, contribute}) => 
-        `# Project ${title}
-            * [Description](#description) 
-            * [Installation](#install) 
-            * [Usage](#usage)
-            * [Contribution](#contribution)
-            * [Tests](#tests)
-            * [License](#license)
-            * [Contact] (#contact)
+`# Project ${title}
+* [Description](#description) 
+* [Installation](#install) 
+* [Usage](#usage)
+* [Contribution](#contribution)
+* [Tests](#tests)
+* [License](#license)
+* [Contact](#contact)
  
-        ## Description
-            For this project the following is a description of the use. 
-            ${description}
-        ## Installation
-            Please follow the following installation guidelines. 
-            ${install}
-        ## Usage 
-            When using this code, there are usage criteria/requirements such as:
-            ${usage}
-        ## Contribution 
-            ${contribute}
-        ## Tests
-            ${tests}
-        ## License 
-            ${license}
-        # Contact Information
-            * Email: ${email}
-            * GitHub: ${github} `; 
-
+## Description
+    For this project the following is a description of the use. 
+    ${description}
+## Installation
+    Please follow the following installation guidelines. 
+    ${install}
+## Usage 
+    When using this code, there are usage criteria/requirements such as:
+    ${usage}
+## Contribution 
+    ${contribute}
+## Tests
+    ${tests}
+## License 
+    The ${license} License to be used for this project. 
+# Contact
+* Email: ${email}
+* GitHub: ${github} `; 
+// TODO: Create an array of questions for user input
 // Questions to be asked/prompted 
 inquirer
     .prompt([
@@ -65,12 +65,12 @@ inquirer
         {
             type: 'input' ,
             name: 'install',
-            message: "What command should be run to initial dependencies?"
+            message: "What are some installation guidelines?"
         },
         {
             type: 'input' ,
             name: 'tests',
-            message: "What command should be run to run tests?"
+            message: "List any tests required for this project?"
         },
         {
             type: 'input' ,
@@ -88,16 +88,8 @@ inquirer
     .then ((answers) =>{
         const readmeContent = generateReadMe(answers);
 
-        fs.writeFile('README2.md', readmeContent, (err) =>
+        fs.writeFile('README.md', readmeContent, (err) =>
             err ? console.log(err) : console.log('Successfully created README file!')
         );
     });
 
-// // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
-
-// // TODO: Create a function to initialize app
-// function init() {}
-
-// // Function call to initialize app
-// init();
